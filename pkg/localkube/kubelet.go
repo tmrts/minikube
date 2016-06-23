@@ -29,8 +29,17 @@ func (lk LocalkubeServer) NewKubeletServer() Server {
 	return NewSimpleServer("kubelet", serverInterval, StartKubeletServer(lk))
 }
 
+func changeToRkt(cfg string) {
+	//cfg.ContainerRuntime = "rkt"
+	//cfg.NetworkPluginName = "kubenet"
+	//RktPath:                          "",
+	//RktStage1Image:                   ""
+}
+
 func StartKubeletServer(lk LocalkubeServer) func() error {
 	config := options.NewKubeletServer()
+	config.ContainerRuntime = "rkt"
+	config.NetworkPluginName = "kubenet"
 
 	// Master details
 	config.APIServerList = []string{lk.GetAPIServerInsecureURL()}

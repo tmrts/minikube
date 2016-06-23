@@ -210,22 +210,26 @@ var assets = []fileToCopy{
 }
 
 func UpdateCluster(d drivers.Driver) error {
-	client, err := sshutil.NewSSHClient(d)
-	if err != nil {
-		return err
-	}
+	/*
+	 *client, err := sshutil.NewSSHClient(d)
+	 *if err != nil {
+	 *    return err
+	 *}
+	 */
 
-	for _, a := range assets {
-		contents, err := Asset(a.AssetName)
-		if err != nil {
-			glog.Infof("Error loading asset %s: %s", a.AssetName, err)
-			return err
-		}
-
-		if err := sshutil.Transfer(contents, a.TargetDir, a.TargetName, a.Permissions, client); err != nil {
-			return err
-		}
-	}
+	/*
+	 *    for _, a := range assets {
+	 *        contents, err := Asset(a.AssetName)
+	 *        if err != nil {
+	 *            glog.Infof("Error loading asset %s: %s", a.AssetName, err)
+	 *            return err
+	 *        }
+	 *
+	 *        if err := sshutil.Transfer(contents, a.TargetDir, a.TargetName, a.Permissions, client); err != nil {
+	 *            return err
+	 *        }
+	 *    }
+	 */
 	return nil
 }
 
